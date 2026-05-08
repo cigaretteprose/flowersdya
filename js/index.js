@@ -1,22 +1,22 @@
-const title = document.querySelector('.title')
-const text = `HERES LITTLE GIFT FROM PRADYA`.split('')
+const title = document.querySelector('.title');
+const text1 = "little gift from pradya";
+const text2 = "For the one reading this, I hope life has been kind to you lately.";
 
-// Create container for better responsive layout
-title.style.display = 'flex'
-title.style.flexWrap = 'wrap'
-title.style.justifyContent = 'center'
-title.style.gap = '0.5rem'
+title.style.display = 'block'; 
+title.style.textAlign = 'center';
 
-for (let index = 0; index < text.length; index++) {
-  if (text[index] !== ' ') {
-    title.innerHTML += `<span>${text[index]}</span>`
-  } else {
-    title.innerHTML += `<span style='width: 1rem'></span>`
+function typeWriter(text, i, callback) {
+  if (i < text.length) {
+    title.innerHTML = text.substring(0, i + 1);
+    setTimeout(() => {
+      typeWriter(text, i + 1, callback);
+    }, 100);
+  } else if (callback) {
+    setTimeout(callback, 2000); 
   }
 }
 
-const textElements = document.querySelectorAll('.title span');
-textElements.forEach((element) => {
-  const randomDelay = Math.random() * 3;
-  element.style.animationDelay = `${randomDelay}s`;
+// Jalankan fungsi
+typeWriter(text1, 0, () => {
+  typeWriter(text2, 0);
 });
