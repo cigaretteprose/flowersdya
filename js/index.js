@@ -1,22 +1,12 @@
 const title = document.querySelector('.title');
-const text1 = "little gift from pradya";
-const text2 = "For the one reading this, I hope life has been kind to you lately.";
+const text = "little gift from pradya";
+let i = 0;
 
-title.style.display = 'block'; 
-title.style.textAlign = 'center';
-
-function typeWriter(text, i, callback) {
+function typing() {
   if (i < text.length) {
-    title.innerHTML = text.substring(0, i + 1);
-    setTimeout(() => {
-      typeWriter(text, i + 1, callback);
-    }, 100);
-  } else if (callback) {
-    setTimeout(callback, 2000); 
+    title.innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 100);
   }
 }
-
-// Jalankan fungsi
-typeWriter(text1, 0, () => {
-  typeWriter(text2, 0);
-});
+typing();
